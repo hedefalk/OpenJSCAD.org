@@ -5,7 +5,7 @@ const {proxy} = require('most-proxy')
 const hooks = require('morphdom-hooks')
 // const morph = hooks(require('morphdom'))
 
-module.exports = function makeDomSideEffect ({targetEl}) {
+module.exports = function makeDomSideEffect () {
   const { attach, stream } = proxy()
 
   const out$ = stream
@@ -37,7 +37,7 @@ module.exports = function makeDomSideEffect ({targetEl}) {
   let storedListeners = {
 
   }
-  function domSource () {
+  function domSource (targetEl) {
     function getElements (query) {
       // todo : how to deal with 'document' level queries
       /*if (query === document) {
@@ -89,5 +89,5 @@ module.exports = function makeDomSideEffect ({targetEl}) {
     return {select, element: targetEl}
   }
 
-  return {source: domSource, sink: domSink.bind(null, targetEl)}
+  return {source: domSource, sink: el => domSink(null, el)}
 }

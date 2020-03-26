@@ -16,7 +16,7 @@ const titleBar = require('@jscad/core/sideEffects/titleBar')()
 // drag & drop side effect
 const dragDrop = require('@jscad/core/sideEffects/dragDrop')()
 // dom side effect
-const dom = require('@jscad/core/sideEffects/dom')()
+const dom = require('@jscad/core/sideEffects/dom')
 // worker side effect
 const makeWorkerEffect = require('@jscad/core/sideEffects/worker')
 
@@ -25,7 +25,7 @@ const path = require('path')
 const localesPath = path.join(__dirname, '..', 'locales')
 const i18n = require('@jscad/core/sideEffects/i18n')({localesPath})
 // web workers
-const solidWorker = makeWorkerEffect('src/core/code-evaluation/rebuildSolidsWorker.js')
+const solidWorker = makeWorkerEffect(require('./core/code-evaluation/rebuildSolidsWorker.js'))
 // generic design parameter handling
 const paramsCallbacktoStream = require('./utils/observable-utils/callbackToObservable')()
 
